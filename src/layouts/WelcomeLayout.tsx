@@ -32,7 +32,7 @@ export const WelcomeLayout:React.FC=()=>{
       </header>
       <main shrink-1 grow-1  m-16px>
         {transitions((style, pathname) =>
-          <animated.div key={pathname} style={style} bg-white w="100%" h="100%" rounded-8px
+          <animated.div key={pathname} style={style} bg-white  w="100%" h="100%" rounded-8px
           flex justify-center items-center>
             {map.current[pathname]}
           </animated.div>
