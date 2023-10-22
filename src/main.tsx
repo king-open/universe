@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import {RouterProvider, createBrowserRouter, Outlet,NavLink} from 'react-router-dom';
 import {RedirectToWelcome1} from './components/RedirectToWelcome1.tsx'
 
+
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -37,14 +39,15 @@ const router = createBrowserRouter([
     ],
 
   },
-  {
-    path: '/1',
-    element: <div>1</div>,
-  }
 ])
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const div = document.getElementById('root') as HTMLElement
+
+const root = ReactDOM.createRoot(div)
+root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
-  </React.StrictMode>,
+    <RouterProvider router={router} />
+  </React.StrictMode>
 )
+
+
