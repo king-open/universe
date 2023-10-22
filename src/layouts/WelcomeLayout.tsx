@@ -1,30 +1,27 @@
-import { animated, useTransition } from '@react-spring/web'
-import type { ReactNode } from 'react'
-import { useLocation, useOutlet } from 'react-router-dom'
+import {animated, useTransition} from '@react-spring/web';
+import type {ReactNode} from 'react';
 import React from 'react';
-const map: Record<string, ReactNode> = {}
+import {useRef} from 'react';
+import {useLocation, useOutlet} from 'react-router-dom';
+
+
+
 
 // @ts-ignore
 export const WelcomeLayout:React.FC=()=>{
-  const location = useLocation() // 获取当前地址栏的信息
-  // location.pathname === /welcome/1
-  // location.pathname === /welcome/2
-  const outlet = useOutlet()
-  map[location.pathname] = outlet
+  const map = useRef<Record<string, ReactNode>>({})
+  const location = useLocation()
+  map.current[location.pathname] = useOutlet()
   const transitions = useTransition(location.pathname, {
-    // 进入状态
-    from: { transform: 'translateX(100%)' },
-    // 稳定状态
+    from: { transform: location.pathname === '/welcome/1' ? 'translateX(0%)': 'translateX(100%)' },
+
     enter: { transform: 'translateX(0%)' },
-    // 退出状态
     leave: { transform: 'translateX(-100%)' },
-    config: { duration: 5000 }
+    config: { duration: 3000 }
   })
-  return transitions((style, pathname) => {
-    return <animated.div key={pathname} style={style}>
-      <div style={{ textAlign: 'center' }}>
-        {map[pathname]}
-      </div>
+  return transitions((style, pathname) =>
+    <animated.div key={pathname} style={style}>
+      {map.current[pathname]}
     </animated.div>
-  })
+  )
 }
