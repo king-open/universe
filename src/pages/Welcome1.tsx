@@ -1,16 +1,10 @@
 import * as React from 'react';
-import c from 'classnames';
-import s from './Welcome1.modules.scss'
-
+import { Link } from 'react-router-dom';
 export const Welcome1: React.FC = () => {
-  // @ts-ignore
-  const {blue, wrapper} = s;
-  // @ts-ignore
+ 
   return (
-    <div className={c(s.wrapper, s.blue)}>
-      <div className='frank'>
-        山竹记账
-      </div>
+    <div>
+      1 <Link to="/welcome/2">下一页</Link>
     </div>
   )
 }
