@@ -1,11 +1,11 @@
-import {Outlet,Navigate} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import React from 'react';
 
-export const MainLayout:React.FC = ()=>{
+export const Root:React.FC = ()=>{
   const hasRead = localStorage.getItem('hasReadWelcomes')
   if (hasRead === 'yes') {
     return <Navigate to="/home" />
   } else {
-    return <div><Outlet /></div>
+    return <Navigate to="/welcome/1" />
   }
 }
